@@ -27,31 +27,31 @@ GENERAL REQUIREMENTS:
 
 (2) PYTHON UNIT TESTS
 
-->	Allowed editors:
-	    vi, vim, emacs
-->	All files should end with a new line
-->	All test files should be inside a folder tests
-->	The testing module to be used has to be:
-		unittest
-->	All test files should be python files:
-		extension: .py
-->	All test files and folders should start with test_
-->	The file organization in the tests folder should be the same as the project's:
-	    Example: for models/base_model.py, unit tests must be in:
-	    	tests/test_models/test_base_model.py
-	    Example: for models/user.py, unit tests must be in:
-	    	tests/test_models/test_user.py
-->	All tests should be executed by using any of commands:
-	    python3 -m unittest discover tests
-	    python3 -m unittest tests/test_models/test_base.py
-->	All  modules should have a documentation:
-	     python3 -c 'print(__import__("my_module").__doc__)'
-->	All  classes should have a documentation:
-	     python3 -c 'print(__import__("my_module").MyClass.__doc__)'
-->	All  functions (inside and outside a class) should have a documentation:
-	     python3 -c 'print(__import__("my_module").my_function.__doc__)'
-	     python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'
-->	A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
+	->	Allowed editors:
+		    vi, vim, emacs
+	->	All files should end with a new line
+	->	All test files should be inside a folder tests
+	->	The testing module to be used has to be:
+			unittest
+	->	All test files should be python files:
+			extension: .py
+	->	All test files and folders should start with test_
+	->	The file organization in the tests folder should be the same as the project's:
+		    Example: for models/base_model.py, unit tests must be in:
+			tests/test_models/test_base_model.py
+		    Example: for models/user.py, unit tests must be in:
+			tests/test_models/test_user.py
+	->	All tests should be executed by using any of commands:
+		    python3 -m unittest discover tests
+		    python3 -m unittest tests/test_models/test_base.py
+	->	All  modules should have a documentation:
+		     python3 -c 'print(__import__("my_module").__doc__)'
+	->	All  classes should have a documentation:
+		     python3 -c 'print(__import__("my_module").MyClass.__doc__)'
+	->	All  functions (inside and outside a class) should have a documentation:
+		     python3 -c 'print(__import__("my_module").my_function.__doc__)'
+		     python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'
+	->	A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
 
 (3) EXECUTION
 
