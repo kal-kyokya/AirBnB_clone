@@ -52,3 +52,47 @@ GENERAL REQUIREMENTS:
 	     python3 -c 'print(__import__("my_module").my_function.__doc__)'
 	     python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'
 ->	A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
+
+(3) EXECUTION
+
+    IN INTERACTIVE MODE:
+
+	$ ./console.py
+	(hbnb) help
+
+	Documented commands (type help <topic>):
+	========================================
+	EOF  help  quit
+
+	(hbnb)
+	(hbnb)
+	(hbnb) quit
+	$
+
+
+    IN NON-INTERACTIVE MODE:(like the Shell project in C)
+
+	$ echo "help" | ./console.py
+	(hbnb)
+
+	Documented commands (type help <topic>):
+	========================================
+	EOF  help  quit
+	(hbnb)
+	$
+	$ cat test_help
+	help
+	$
+	$ cat test_help | ./console.py
+	(hbnb)
+
+	Documented commands (type help <topic>):
+	========================================
+	EOF  help  quit
+	(hbnb)
+	$
+
+
+    ALL TESTS SHOULD ALSO PASS IN NON-INTERACTIVE MODE:
+
+	$ echo "python3 -m unittest discover tests" | bash
