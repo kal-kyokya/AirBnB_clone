@@ -28,7 +28,8 @@ class TestBaseModel(unittest.TestCase):
     def test_str(self):
         """Assert compliance of 'dunder str' representation to requierment"""
         str_list = str(self).split()
-        my_list = [f"[{self.__class_.__name__}]", f"({self.id})", f"{self.__dict__}"]
+        my_list = [f"[{self.__class_.__name__}]",
+                   f"({self.id})", f"{self.__dict__}"]
         count = 0
         for element in my_list:
             self.assertEqual(element, str_list[count])
