@@ -6,7 +6,7 @@ import uuid
 from datetime import datetime
 
 
-def BaseModel():
+class BaseModel():
     """Defines all common attributes/methods of subclasses to come."""
 
     def __init__(self):
@@ -17,7 +17,7 @@ def BaseModel():
 
     def __str__(self):
         """Customizes the string representations of BaseModel instances"""
-        return f"[{slef.__class__.name}] ({self.id}) {self.__dict__}"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """Passes time at which method is called to 'updated_at'"""
