@@ -3,8 +3,9 @@
 'test_base_model' is the unit test for /models/base_model.py
 """
 import unittest
-from modules import base_model
+from models import base_model
 from datetime import datetime
+import uuid
 
 
 class TestBaseModel(unittest.TestCase):
@@ -20,9 +21,9 @@ class TestBaseModel(unittest.TestCase):
 
     def test_Object_Attr(self):
         """Runs tests on Instance Attributes of BaseModel"""
-        self.assertIsInstance(self.id, uuid)
-        self.assertIsInstance(self.created_at, datetime)
-        self.assertIsInstance(self.updated_at, datetime)
+        self.assertIsInstance(self.id, uuid.UUID)
+        self.assertIsInstance(self.created_at, datetime.datetime)
+        self.assertIsInstance(self.updated_at, datetime.datetime)
 
     def test_str(self):
         """Assert compliance of 'dunder str' representation to requierment"""
