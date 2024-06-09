@@ -4,6 +4,7 @@
 """
 import uuid
 from datetime import datetime
+from models import storage
 
 
 class BaseModel():
@@ -26,6 +27,7 @@ class BaseModel():
     def save(self):
         """Passes time at which method is called to 'updated_at'"""
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """Generates dictionary representation of the BaseModel Instance."""
