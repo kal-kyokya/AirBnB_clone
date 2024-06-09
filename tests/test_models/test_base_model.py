@@ -2,6 +2,13 @@
 """
 'test_base_model' is the unit test for /models/base_model.py
 """
+# Project structure
+# AirBnb_clone/
+# ├── models/
+# │   └── base_model.py
+# └── tests/
+#     └── test_base_model.py
+
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
@@ -15,22 +22,29 @@ class TestBaseModel(unittest.TestCase):
         TestCase: Provides methods for assertion and testing.
     """
 
+    def test_init(self):
+        """Checks that output of init dunder is BaseModel object."""
+        obj1 = BaseModel()
+        obj2 = BaseModel(obj1.__dict__)
+        self.assertEqual(type(obj1), type(obj2))
+        self.assertNotEqual(obj1, obj2)
+
     def test_Object_Attr(self):
         """Runs tests on Instance Attributes of BaseModel"""
         obj = BaseModel()
-        self.assertEqual(type(obj.id), type(uuid.uuid4()))
+        self.assertEqual(type(obj.id), type(str()))
         self.assertEqual(type(obj.created_at), type(datetime.now()))
         self.assertEqual(type(obj.updated_at), type(datetime.now()))
 
     def test_str(self):
-        """Assert compliance of 'dunder str' representation to requierment"""
+        """Assert compliance of 'dunder str' representation to requierements"""
         obj = BaseModel()
         self.assertEqual(
             str(obj),
             f"[{obj.__class__.__name__}] ({obj.id}) {obj.__dict__}")
 
     def test_save(self):
-        """Confirms that saving action is done sucessffully."""
+        """Confirms that saving action was sucessfull."""
         obj = BaseModel()
         before = obj.updated_at
         after = obj.save()
