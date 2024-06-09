@@ -29,7 +29,6 @@ class TestBaseModel(unittest.TestCase):
         dct = {'__class__': self.__class__.__name__}
         obj3 = BaseModel(**dct)
 
-        print(obj3.__dict__.keys())
         self.assertEqual(type(obj1), type(obj2))
         self.assertNotEqual(obj1, obj2)
         self.assertTrue('__class__' not in obj3.__dict__.keys())
