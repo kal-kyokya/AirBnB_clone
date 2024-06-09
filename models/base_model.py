@@ -17,7 +17,6 @@ class BaseModel():
         if kwargs is not None:
             for key, value in kwargs.items():
                 if key != "__class__":
-                    self.key = value
                     self.__dict__.update({f"{key}": value})
 
     def __str__(self):
