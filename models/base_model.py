@@ -21,7 +21,7 @@ class BaseModel():
 
     def save(self):
         """Passes time at which method is called to 'updated_at'"""
-        self.updated_at = datetime.now
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """Generates dictionary representation of the BaseModel Instance."""
