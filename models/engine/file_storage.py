@@ -22,8 +22,8 @@ class FileStorage():
         return self.__objects
 
     @objects.setter
-    def objects(self):
-        pass
+    def objects(self, value):
+        objects = value
 
     def all(self):
         """Returns a dictionary of all stored objects."""
@@ -35,13 +35,13 @@ class FileStorage():
 
     def save(self):
         """Serializes 'objects' into a JSON file."""
-        with ("file.json", "w") as jfile:
+        with open('file.json', 'w') as jfile:
             json.dump(self.objects, jfile)
 
     def reload(self):
         """Deserializes an JSON file to a string object."""
         try:
-            with ("file.json", "r") as jfile:
+            with open('file.json', 'r') as jfile:
                 self.objects = json.load(jfile)
         except:
             pass
