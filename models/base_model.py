@@ -16,7 +16,10 @@ class BaseModel():
         self.updated_at = datetime.now()
         if kwargs is not None:
             for key, value in kwargs.items():
-                self.key = value
+                if key != "__class__":
+                    self.key = value
+                    if key not in self.__dict__:
+                        self.__dict__.update({f"{key}": value})
 
     def __str__(self):
         """Customizes the string representations of BaseModel instances"""

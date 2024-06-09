@@ -26,8 +26,13 @@ class TestBaseModel(unittest.TestCase):
         """Checks that output of init dunder is BaseModel object."""
         obj1 = BaseModel()
         obj2 = BaseModel(obj1.__dict__)
+        dct = {'__class__': self.__class__.__name__}
+        obj3 = BaseModel(**dct)
+
+        print(obj3.__dict__.keys())
         self.assertEqual(type(obj1), type(obj2))
         self.assertNotEqual(obj1, obj2)
+        self.assertTrue('__class__' not in obj3.__dict__.keys())
 
     def test_Object_Attr(self):
         """Runs tests on Instance Attributes of BaseModel"""
