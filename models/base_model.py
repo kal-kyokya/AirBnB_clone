@@ -18,8 +18,7 @@ class BaseModel():
             for key, value in kwargs.items():
                 if key != "__class__":
                     self.key = value
-                    if key not in self.__dict__:
-                        self.__dict__.update({f"{key}": value})
+                    self.__dict__.update({f"{key}": value})
 
     def __str__(self):
         """Customizes the string representations of BaseModel instances"""

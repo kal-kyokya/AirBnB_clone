@@ -30,3 +30,9 @@ print(type(my_new_model.created_at))
 print("-" * 50)
 
 print(my_model is my_new_model)
+
+print("-" * 50)
+
+bm1 = BaseModel()
+bm2 = BaseModel(**bm1.to_dict())
+print(bm1.id == bm2.id)
