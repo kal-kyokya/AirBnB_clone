@@ -20,12 +20,16 @@ class BaseModel():
             (*args, **kwargs): Arbitrary optional arguments.
         """
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        self.created_at = self.updated_at = datetime.now()
         if kwargs is not None:
             for key, value in kwargs.items():
                 if key != "__class__":
-                    self.__dict__.update({f"{key}": value})
+                    if key in ("created_at", "updated_at"):
+                        self.__dict__.update({f"{key}": datetime.now()})
+                    else:
+                        self.__dict__.update({f"{key}": value})
+        else:
+            models.storage.new(self)
 
     def __str__(self):
         """Customizes the string representations of BaseModel instances"""
