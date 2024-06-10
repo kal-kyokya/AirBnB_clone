@@ -13,6 +13,7 @@ import unittest
 from models.base_model import BaseModel
 from datetime import datetime
 import uuid
+import models
 
 
 class TestBaseModel(unittest.TestCase):
@@ -52,7 +53,10 @@ class TestBaseModel(unittest.TestCase):
         obj = BaseModel()
         before = obj.updated_at
         after = obj.save()
+        models.storage.new(obj)
+        models.storage.save()
         self.assertNotEqual(before, after)
+        self.assertIn("BaseModel." + obj.id, models.storage.all().keys())
 
     def test_to_dict(self):
         """Tests the conversion tool 'to_dict'."""

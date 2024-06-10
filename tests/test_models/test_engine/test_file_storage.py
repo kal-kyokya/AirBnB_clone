@@ -33,7 +33,7 @@ class TestFileStorageInit(unittest.TestCase):
 
 
 class TestFileStorageMethods(unittest.TestCase):
-    """Class of test methods assessing the FileStorage Class's Init method."""
+    """Class of test methods assessing the FileStorage Class's methods."""
 
     def test_new_method(self):
         """Enforces passing an object to the method 'new'."""
