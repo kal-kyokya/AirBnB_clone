@@ -16,7 +16,7 @@
 import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
-from models import storage
+import models
 
 
 class TestFileStorage(unittest.TestCase):
@@ -32,12 +32,21 @@ class TestFileStorage(unittest.TestCase):
 
     def test_method_new(self):
         """Enforces passing an object to the method 'new'."""
-        pass
+        obj = BaseModel()
+        models.storage.new(obj)
+        self.assertNotEqual(models.storage.all(), None)
 
     def test_method_all(self):
         """Confirms return type of the generated output of 'all'."""
         obj = FileStorage()
         self.assertIsInstance(obj.all(), dict)
+
+    def test_method_save(self):
+        """Asserts the existance of a stored/saved object."""
+        obj = BaseModel()
+        models.storage.new(obj)
+        models.storage.save()
+        self.assertNotEqual(models.storage.all(), None)
 
 
 if "__name__" == "__main__":
