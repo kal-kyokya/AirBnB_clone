@@ -34,7 +34,7 @@ class TestFileStorage(unittest.TestCase):
         """Enforces passing an object to the method 'new'."""
         obj = BaseModel()
         models.storage.new(obj)
-        self.assertNotEqual(models.storage.all(), None)
+        self.assertIn("BaseModel." + obj.id, models.storage.all().keys())
 
     def test_all_method(self):
         """Confirms return type of the generated output of 'all'."""
