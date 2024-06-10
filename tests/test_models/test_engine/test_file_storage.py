@@ -43,11 +43,21 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(type(obj.all()) is dict)
 
     def test_save_method(self):
-        """Asserts the existance of a stored/saved object."""
+        """Asserts the existence of a stored/saved object post encoding."""
         obj = BaseModel()
         models.storage.new(obj)
         models.storage.save()
         self.assertNotEqual(models.storage.all(), None)
+
+
+    def test_reload_method(self):
+        """Investigate the presence of a stored/saved object post decoding."""
+        obj = BaseModel()
+        models.storage.new(obj)
+        models.storage.save()
+        models.storage.reload()
+        objects = models.storage.all()
+        self.assertIn("BaseModel." + obj.id, objects)
 
 
 if "__name__" == "__main__":
