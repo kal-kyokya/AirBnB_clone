@@ -19,8 +19,8 @@ from models.base_model import BaseModel
 import models
 
 
-class TestFileStorage(unittest.TestCase):
-    """Class of test methods assessing the FileStorage Class."""
+class TestFileStorageInit(unittest.TestCase):
+    """Class of test methods assessing the FileStorage Class's Init method."""
 
     def test_init(self):
         """Checks that no private attribute is accessed remotely"""
@@ -29,6 +29,11 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(AttributeError):
             objects = obj.objects
             file_path = obj.file_path
+
+
+
+class TestFileStorageMethods(unittest.TestCase):
+    """Class of test methods assessing the FileStorage Class's Init method."""
 
     def test_new_method(self):
         """Enforces passing an object to the method 'new'."""
@@ -57,7 +62,7 @@ class TestFileStorage(unittest.TestCase):
         models.storage.save()
         models.storage.reload()
         objects = models.storage.all()
-        self.assertIn("BaseModel." + obj.id, objects)
+        self.assertuIn("BaseModel." + obj.id, objects)
 
 
 if "__name__" == "__main__":
