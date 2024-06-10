@@ -4,14 +4,21 @@
 """
 import uuid
 from datetime import datetime
-from models.engine.file_storage import FileStorage
+import models
 
 
 class BaseModel():
     """Defines all common attributes/methods of subclasses to come."""
 
     def __init__(self, *args, **kwargs):
-        """Constructs/Initializes Instances of class BaseModel."""
+        """Constructs/Initializes Instances of class BaseModel.
+
+        Args:
+            id: Unique identifier of each class instance.
+            created_at: Time at which init method is called.
+            updated_at: Time at which object is saved in json file.
+            (*args, **kwargs): Arbitrary optional arguments.
+        """
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
@@ -27,9 +34,8 @@ class BaseModel():
     def save(self):
         """Passes time at which method is called to 'updated_at'"""
         self.updated_at = datetime.now()
-
-        obj = FileStorage()
-        obj.save()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         """Generates dictionary representation of the BaseModel Instance."""

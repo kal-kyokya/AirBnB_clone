@@ -3,6 +3,7 @@
 'file_storage' is a Class creation module.
 """
 import json
+from models.base_model import BaseModel
 
 
 class FileStorage():
@@ -10,14 +11,14 @@ class FileStorage():
 
     Class Attributes:
         file_path: String representing the path to the JSON File.
-        objects: Dictionary of dictionary objects to be stored.
+        objects: Dictionary of BaseModel objects to be stored.
     """
 
     __file_path = "file.json"
     __objects = {}
 
-    def new(self, my_dict):
-        """Adds a dictionary to the collection of dictionaries.
+    def new(self, obj):
+        """Adds a BaseModel object to the dictionary.
 
         Arg:
             my_dict: New dictionary of the collection.
@@ -25,18 +26,30 @@ class FileStorage():
         Return:
             Nothing.
         """
-        if my_dict is not None:
-            key = self.__class__.__name__ + "." + my_dict['id']
-            self.objects.update({f"{key}": my_dict})
+        if obj is not None:
+            key = obj.__class__.__name__ + "." + obj.id
+            self.__objects[key] = obj
 
     def save(self):
         """Serializes a dict to JSON string and stores it in a JSON file."""
-        with open("file.json", "w") as jfile:
-            for key, value in self.objects.items():
-                jvalue = {f"{key}": value}
-                json.load(jvalue, jfile)
+        json_objects = {}
+        for key in self.__objects:
+            json_objects[key] = self.__objects[key].to_dict()
+        with open(self.__file_path, "w") as jfile:
+                json.dump(json_objects, jfile)
 
     def reload(self):
         """Provides FileStorage instances with previously stored data."""
-        with open("file.json", "r") as jfile:
-            jdata = json.load(jfile)
+        try:
+            with open(self.__file_path, "r") as jfile:
+                data = json.load(jfile)
+                for key, value in data.items():
+                    class_name = value['__class__']
+                    del value['__class__']
+                    self.new(eval(class_name)(**value))
+        except FileNotFoundError:
+            pass
+
+    def all(self):
+        """Returns the dictionary containing all objects saved in the past."""
+        return (self.__objects)
