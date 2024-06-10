@@ -39,7 +39,8 @@ class TestFileStorage(unittest.TestCase):
     def test_all_method(self):
         """Confirms return type of the generated output of 'all'."""
         obj = FileStorage()
-        self.assertIsInstance(obj.all(), dict)
+        self.assertEqual(type(obj.all()), dict)
+        self.assertTrue(type(obj.all()) is dict)
 
     def test_save_method(self):
         """Asserts the existance of a stored/saved object."""
