@@ -30,18 +30,18 @@ class TestFileStorage(unittest.TestCase):
             objects = obj.objects
             file_path = obj.file_path
 
-    def test_method_new(self):
+    def test_new_method(self):
         """Enforces passing an object to the method 'new'."""
         obj = BaseModel()
         models.storage.new(obj)
         self.assertNotEqual(models.storage.all(), None)
 
-    def test_method_all(self):
+    def test_all_method(self):
         """Confirms return type of the generated output of 'all'."""
         obj = FileStorage()
         self.assertIsInstance(obj.all(), dict)
 
-    def test_method_save(self):
+    def test_save_method(self):
         """Asserts the existance of a stored/saved object."""
         obj = BaseModel()
         models.storage.new(obj)
