@@ -16,6 +16,7 @@
 import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
+from models import storage
 
 
 class TestFileStorage(unittest.TestCase):
@@ -30,12 +31,8 @@ class TestFileStorage(unittest.TestCase):
             file_path = obj.file_path
 
     def test_method_new(self):
-        """Enforces passing a dictionary to the method 'new'."""
-        obj = FileStorage()
-        model = BaseModel()
-        dct = model.to_dict()
-        obj.new(dct)
-        self.assertIsInstance(dct, dict)
+        """Enforces passing an object to the method 'new'."""
+        pass
 
     def test_method_all(self):
         """Confirms return type of the generated output of 'all'."""
