@@ -59,9 +59,10 @@ class TestFileStorageMethods(unittest.TestCase):
     def test_reload_method(self):
         """Investigates the presence of a stored/saved object post decoding."""
         obj = BaseModel()
+        models.storage.new(obj)
         models.storage.save()
         models.storage.reload()
-        objects = FileStorage._FileStorage__objects
+        objects = models.storage.all()
         self.assertIn("BaseModel." + obj.id, objects)
 
         with self.assertRaises(TypeError):
