@@ -66,6 +66,9 @@ class TestFileStorageMethods(unittest.TestCase):
         objects = FileStorage._FileStorage__objects
         self.assertIn("BaseModel." + obj.id, objects)
 
+        with self.assertRaises(TypeError):
+            store.reload(None)
+
 
 if "__name__" == "__main__":
     unitttest.main()
