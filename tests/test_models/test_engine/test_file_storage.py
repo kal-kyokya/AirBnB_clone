@@ -17,6 +17,7 @@ import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 import models
+import json
 
 
 class TestFileStorageInit(unittest.TestCase):
@@ -51,7 +52,9 @@ class TestFileStorageMethods(unittest.TestCase):
         obj = BaseModel()
         models.storage.new(obj)
         models.storage.save()
-        self.assertNotEqual(models.storage.all(), None)
+        with open("file.json", "r") as jfile:
+            data = json.load(jfile)
+            self.assertIn("BaseModel." + obj.id, data)
 
     def test_reload_method(self):
         """Investigate the presence of a stored/saved object post decoding."""
