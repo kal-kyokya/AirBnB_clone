@@ -56,7 +56,8 @@ class TestBaseModel(unittest.TestCase):
         models.storage.new(obj)
         models.storage.save()
         self.assertNotEqual(before, after)
-        self.assertIn("BaseModel." + obj.id, models.storage.all().keys())
+        with open("file.json", "r") as jfile:
+            self.assertIn("BaseModel." + obj.id, models.storage.all().keys())
 
     def test_to_dict(self):
         """Tests the conversion tool 'to_dict'."""
