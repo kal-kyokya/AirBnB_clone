@@ -52,7 +52,8 @@ class TestBaseModel(unittest.TestCase):
         """Confirms that saving action was sucessfull."""
         obj = BaseModel()
         before = obj.updated_at
-        after = obj.save()
+        obj.save()
+        after = obj.updated_at
         models.storage.new(obj)
         models.storage.save()
         self.assertNotEqual(before, after)
