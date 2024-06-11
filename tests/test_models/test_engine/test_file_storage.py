@@ -63,7 +63,7 @@ class TestFileStorageMethods(unittest.TestCase):
         store.new(obj)
         store.save()
         store.reload()
-        objects = store.all()
+        objects = FileStorage._FileStorage__objects
         self.assertIn("BaseModel." + obj.id, objects)
 
 
