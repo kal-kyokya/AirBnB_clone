@@ -13,6 +13,7 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
+    intro = "\nCurrently running: AirBnb_clone Command interpreter.\n"
 
     def do_quit(self, line):
         """Executes for input command 'quit'."""
@@ -31,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
         """Documentation pf End Of File signals as input (i.e. CTRL-D)"""
         print("Handles 'CTRL-D' as input command and terminates execution.")
 
-    def emptyline(self):
+    def empty_list(self):
         """Executes when input command is 'an empty string'."""
         pass
 
