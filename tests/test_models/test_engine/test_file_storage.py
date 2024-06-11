@@ -31,7 +31,6 @@ class TestFileStorageInit(unittest.TestCase):
             file_path = obj.file_path
 
 
-
 class TestFileStorageMethods(unittest.TestCase):
     """Class of test methods assessing the FileStorage Class's methods."""
 
@@ -54,7 +53,6 @@ class TestFileStorageMethods(unittest.TestCase):
         models.storage.save()
         self.assertNotEqual(models.storage.all(), None)
 
-
     def test_reload_method(self):
         """Investigate the presence of a stored/saved object post decoding."""
         obj = BaseModel()
@@ -62,7 +60,7 @@ class TestFileStorageMethods(unittest.TestCase):
         models.storage.save()
         models.storage.reload()
         objects = models.storage.all()
-        self.assertuIn("BaseModel." + obj.id, objects)
+        self.assertIn("BaseModel." + obj.id, objects)
 
 
 if "__name__" == "__main__":

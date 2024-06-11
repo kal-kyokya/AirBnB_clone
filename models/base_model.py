@@ -25,7 +25,8 @@ class BaseModel():
             for key, value in kwargs.items():
                 if key != "__class__":
                     if key in ("created_at", "updated_at"):
-                        self.__dict__.update({f"{key}": datetime.now()})
+                        self.__dict__.update(
+                            {f"{key}": datetime.fromisoformat(value)})
                     else:
                         self.__dict__.update({f"{key}": value})
         else:

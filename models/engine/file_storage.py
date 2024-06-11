@@ -36,7 +36,7 @@ class FileStorage():
         for key in self.__objects:
             json_objects[key] = self.__objects[key].to_dict()
         with open(self.__file_path, "w") as jfile:
-                json.dump(json_objects, jfile)
+            json.dump(json_objects, jfile)
 
     def reload(self):
         """Provides FileStorage instances with previously stored data."""
