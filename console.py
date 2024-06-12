@@ -5,7 +5,7 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
-
+from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """Collection of attributes and methods enabling command interpretation.
@@ -15,6 +15,7 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
+    cls_list = ["BaseModel", "User"]
 
     def do_quit(self, line):
         """Executes for input command 'quit'.
@@ -64,7 +65,7 @@ class HBNBCommand(cmd.Cmd):
         parsing_result = cmd.Cmd.parseline(self, cls_type)
         if parsing_result[0] is None:
             print("** class name missing **")
-        elif parsing_result[0] != "BaseModel":
+        elif parsing_result[0] not in cls_list:
             print("** class doesn't exist **")
         else:
             obj = eval(cls_type)()
@@ -88,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
         parsing_result = cmd.Cmd.parseline(self, cls_and_id)
         if parsing_result[0] is None:
             print("** class name missing **")
-        elif parsing_result[0] != "BaseModel":
+        elif parsing_result[0] not in cls_list:
             print("** class doesn't exist **")
         elif parsing_result[1] == "":
             print("** instance id missing **")
@@ -116,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
         parsing_result = cmd.Cmd.parseline(self, cls_and_id)
         if parsing_result[0] is None:
             print("** class name missing **")
-        elif parsing_result[0] != "BaseModel":
+        elif parsing_result[0] not in cls_list:
             print("** class doesn't exist **")
         elif parsing_result[1] == "":
             print("** instance id missing **")
@@ -173,7 +174,7 @@ class HBNBCommand(cmd.Cmd):
         parse = cmd.Cmd.parseline(self, cls_id_attr_and_value)
         if parse[0] is None:
             print("** class name missing **")
-        elif parse[0] != "BaseModel":
+        elif parse[0] not in cls_list:
             print("** class doesn't exist **")
         elif parse[1] == "":
             print("** instance id missing **")
