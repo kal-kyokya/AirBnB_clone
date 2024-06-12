@@ -89,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
         if parsing_result[0] is None:
             print("** class name missing **")
         elif parsing_result[0] != "BaseModel":
-            print(f"{parsing_result[0]}: ", "** class doesn't exist **")
+            print("** class doesn't exist **")
         elif parsing_result[1] == "":
             print("** instance id missing **")
 
@@ -154,6 +154,8 @@ class HBNBCommand(cmd.Cmd):
             for key, value in my_dict.items():
                 if f"{parsing_result[0]}" in key:
                     print(value)
+                else:
+                    print("** class doesn't exist **")
 
     def help_all(self):
         """Documentation for the 'all' interpretation command."""
