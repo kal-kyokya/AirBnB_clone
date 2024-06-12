@@ -19,10 +19,10 @@ class FileStorage():
     __objects = {}
 
     def new(self, obj):
-        """Adds a BaseModel object to the dictionary.
+        """Adds a class object to the '__objects' dictionary.
 
         Arg:
-            my_dict: New dictionary of the collection.
+            obj: New instance added to the dictionary.
 
         Return:
             Nothing.

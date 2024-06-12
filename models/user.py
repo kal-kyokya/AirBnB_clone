@@ -6,7 +6,7 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """Collection of class Attributes required for instances of User.
+    """Collection of class Attributes required for instanciation of User class.
 
     Parent class:
         BaseModel: Comprises of fields needed for creation of User object.

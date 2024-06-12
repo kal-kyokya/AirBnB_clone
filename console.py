@@ -65,7 +65,7 @@ class HBNBCommand(cmd.Cmd):
         parsing_result = cmd.Cmd.parseline(self, cls_type)
         if parsing_result[0] is None:
             print("** class name missing **")
-        elif parsing_result[0] not in cls_list:
+        elif parsing_result[0] not in self.cls_list:
             print("** class doesn't exist **")
         else:
             obj = eval(cls_type)()
@@ -89,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
         parsing_result = cmd.Cmd.parseline(self, cls_and_id)
         if parsing_result[0] is None:
             print("** class name missing **")
-        elif parsing_result[0] not in cls_list:
+        elif parsing_result[0] not in self.cls_list:
             print("** class doesn't exist **")
         elif parsing_result[1] == "":
             print("** instance id missing **")
@@ -117,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
         parsing_result = cmd.Cmd.parseline(self, cls_and_id)
         if parsing_result[0] is None:
             print("** class name missing **")
-        elif parsing_result[0] not in cls_list:
+        elif parsing_result[0] not in self.cls_list:
             print("** class doesn't exist **")
         elif parsing_result[1] == "":
             print("** instance id missing **")
@@ -174,7 +174,7 @@ class HBNBCommand(cmd.Cmd):
         parse = cmd.Cmd.parseline(self, cls_id_attr_and_value)
         if parse[0] is None:
             print("** class name missing **")
-        elif parse[0] not in cls_list:
+        elif parse[0] not in self.cls_list:
             print("** class doesn't exist **")
         elif parse[1] == "":
             print("** instance id missing **")

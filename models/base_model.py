@@ -37,13 +37,13 @@ class BaseModel():
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
-        """Passes time at which method is called to 'updated_at'"""
+        """Edits 'updated_at' attributes and store calling object details."""
         self.updated_at = datetime.now()
         models.storage.new(self)
         models.storage.save()
 
     def to_dict(self):
-        """Generates dictionary representation of the BaseModel Instance."""
+        """Generates dictionary representation of the calling Instance."""
         dct = self.__dict__.copy()
         dct['created_at'] = self.created_at.isoformat()
         dct['updated_at'] = self.updated_at.isoformat()
