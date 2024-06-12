@@ -21,6 +21,9 @@ class HBNBCommand(cmd.Cmd):
 
         Arg:
             line: Potential input parameter to the 'quit' command.
+
+        Usage:
+            (hbnb) quit
         """
         return (True)
 
@@ -33,12 +36,15 @@ class HBNBCommand(cmd.Cmd):
 
         Arg:
             line: Potential input parameter to the 'quit' command.
+
+        Usage:
+            (hbnb) ^D
         """
         print()
         return (True)
 
     def help_EOF(self):
-        """Documentation pf End Of File signals as input (i.e. CTRL-D)"""
+        """Documentation for End Of File signals as input (i.e. CTRL-D)"""
         print("Handles 'CTRL-D' as input command and terminates execution.")
 
     def emptyline(self):
@@ -49,11 +55,16 @@ class HBNBCommand(cmd.Cmd):
         """Initializes an object of specific class type.
 
         Arg:
-            cls_type: Desired class type for object to be constructed.
+            cls_type: Input string containing
+                      the desired class type for object to be constructed.
+
+        Usage:
+            (hbnb) create <class name>
         """
-        if cls_type is None:
+        parsing_result = cmd.Cmd.parseline(self, cls_type)
+        if parsing_result[0] is None:
             print("** class name missing **")
-        elif cls_type != "BaseModel":
+        elif parsing_result[0] != "BaseModel":
             print("** class doesn't exist **")
         else:
             obj = eval(cls_type)()
@@ -64,6 +75,34 @@ class HBNBCommand(cmd.Cmd):
     def help_create(self):
         """Documentation for the 'create' interpreter command."""
         print("Constructs/Initializes an object of defined class type.")
+
+    def do_show(self, cls_and_id):
+        """Prints an instance's infos based on its class name and unique ID.
+
+        Arg:
+            cls_and_id: String contained sought object's class and ID.
+
+        Usage:
+            (hbnb) show <class name> <id>
+        """
+        parsing_result = cmd.Cmd.parseline(self, cls_and_id)
+        if parsing_result[0] is None:
+            print("** class name missing **")
+        elif parsing_result[0] != "BaseModel":
+            print(f"{parsing_result[0]}: ", "** class doesn't exist **")
+        elif parsing_result[1] == "BaseModel":
+            print("** instance id missing **")
+
+        else:
+            my_dict = storage.all()
+            if f"{parsing_result[0]}.{parsing_result[1]}" in my_dict:
+                print(my_dict[f"{parsing_result[0]}.{parsing_result[1]}"])
+            else:
+                print("** no instance found **")
+
+    def help_show(self):
+        """Documentation for the 'show' command as interpreter input."""
+        print("Prints an object's details based on its class name and ID.")
 
 
 if __name__ == "__main__":
