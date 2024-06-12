@@ -184,7 +184,7 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             my_dict = storage.all()
-            parse1 = parse[1].split(" ")            
+            parse1 = parse[1].split(" ")
             if f"{parse[0]}.{parse1[0]}" in my_dict:
                 new_dict = my_dict[f"{parse[0]}.{parse1[0]}"].to_dict()
                 print(new_dict)
