@@ -190,7 +190,7 @@ class HBNBCommand(cmd.Cmd):
                 print(new_dict)
                 storage.save()
             else:
-                print("** instance not found **")
+                print("** no instance found **")
 
     def help_update(self):
         """Documentation for the 'update' command."""
