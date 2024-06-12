@@ -90,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif parsing_result[0] != "BaseModel":
             print(f"{parsing_result[0]}: ", "** class doesn't exist **")
-        elif parsing_result[1] == "BaseModel":
+        elif parsing_result[1] == "":
             print("** instance id missing **")
 
         else:
@@ -118,13 +118,13 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif parsing_result[0] != "BaseModel":
             print("** class doesn't exist **")
-        elif parsing_result[1] == "BaseModel":
+        elif parsing_result[1] == "":
             print("** instance id missing **")
 
         else:
             my_dict = storage.all()
-            if f"BaseModel.{parsing_result[1]}" in my_dict:
-                del my_dict[f"BaseModel.{parsing_result[1]}"]
+            if f"{parsing_result[0]}.{parsing_result[1]}" in my_dict:
+                del my_dict[f"{parsing_result[0]}.{parsing_result[1]}"]
                 for key, value in my_dict.items():
                     storage.all().update(my_dict)
                 storage.save()
@@ -157,7 +157,44 @@ class HBNBCommand(cmd.Cmd):
 
     def help_all(self):
         """Documentation for the 'all' interpretation command."""
-        print("Prints all objects stored by class name or by presence in storage.")
+        print("Prints all objects stored by class name or by presence.")
+
+    def do_update(self, cls_id_attr_and_value):
+        """Updates the attributes of a class object of given id.
+
+        Arg:
+            cls_id_attr_and_value: String format containing object's details.
+
+        Usage:
+            (hbnb) update <class name> <id> <attribute> <value>
+        """
+        parse = cmd.Cmd.parseline(self, cls_id_attr_and_value)
+        if parse[0] is None:
+            print("** class name missing **")
+        elif parse[0] != "BaseModel":
+            print("** class doesn't exist **")
+        elif parse[1] == "":
+            print("** instance id missing **")
+        elif len(parse[2].split(" ")) == 2:
+            print("** attribute name missing **")
+        elif len(parse[2].split(" ")) == 3:
+            print("** value missing **")
+
+        else:
+            my_dict = storage.all()
+            parse1 = parse[1].split(" ")            
+            if f"{parse[0]}.{parse1[0]}" in my_dict:
+                new_dict = my_dict[f"{parse[0]}.{parse1[0]}"].to_dict()
+                print(new_dict)
+                new_dict[f"{parse1[1]}"] = parse1[2]
+                print(new_dict)
+                storage.save()
+            else:
+                print("** instance not found **")
+
+    def help_update(self):
+        """Documentation for the 'update' command."""
+        print("Sets a defined attribute to a specific value.")
 
 
 if __name__ == "__main__":
