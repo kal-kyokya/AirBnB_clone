@@ -104,6 +104,37 @@ class HBNBCommand(cmd.Cmd):
         """Documentation for the 'show' command as interpreter input."""
         print("Prints an object's details based on its class name and ID.")
 
+    def do_destroy(self, cls_and_id):
+        """Deletes an object based on its class name and ID.
+
+        Arg:
+            cls_and_id: class name and ID in string format.
+
+        Usage:
+            destroy <BaseModel> <id>
+        """
+        parsing_result = cmd.Cmd.parseline(self, cls_and_id)
+        if parsing_result[0] is None:
+            print("** class name missing **")
+        elif parsing_result[0] != "BaseModel":
+            print("** class doesn't exist **")
+        elif parsing_result[1] == "BaseModel":
+            print("** instance id missing **")
+
+        else:
+            my_dict = storage.all()
+            if f"BaseModel.{parsing_result[1]}" in my_dict:
+                del my_dict[f"BaseModel.{parsing_result[1]}"]
+                for key, value in my_dict.items():
+                    storage.all().update(my_dict)
+                storage.save()
+            else:
+                print("** no instance found **")
+
+    def help_destroy(self):
+        """Documentation for 'destroy' command."""
+        print("Deletes a particular instance based on its class name and ID.")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
