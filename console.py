@@ -111,7 +111,7 @@ class HBNBCommand(cmd.Cmd):
             cls_and_id: class name and ID in string format.
 
         Usage:
-            destroy <BaseModel> <id>
+            (hbnb) destroy <BaseModel> <id>
         """
         parsing_result = cmd.Cmd.parseline(self, cls_and_id)
         if parsing_result[0] is None:
@@ -134,6 +134,30 @@ class HBNBCommand(cmd.Cmd):
     def help_destroy(self):
         """Documentation for 'destroy' command."""
         print("Deletes a particular instance based on its class name and ID.")
+
+    def do_all(self, cls):
+        """Prints all instances stored either by class name or not.
+
+        Arg:
+            cls: Optional parameter class name of objects to be retrieved.
+
+        Usage:
+            (hbnb) all
+            (hbnb) all ModelName
+        """
+        my_dict = storage.all()
+        parsing_result = cmd.Cmd.parseline(self, cls)
+        if parsing_result[0] is None:
+            for value in my_dict.values():
+                print(value)
+        else:
+            for key, value in my_dict.items():
+                if f"{parsing_result[0]}" in key:
+                    print(value)
+
+    def help_all(self):
+        """Documentation for the 'all' interpretation command."""
+        print("Prints all objects stored by class name or by presence in storage.")
 
 
 if __name__ == "__main__":
