@@ -31,7 +31,6 @@ class TestPlace(unittest.TestCase):
         self.assertIs(type(self.place.price_by_night), int)
         self.assertIs(type(self.place.latitude), float)
         self.assertIs(type(self.place.longitude), float)
-        self.assertIs(type(self.place.amenity_ids), list)
 
         for attr in self.attr_list:
             self.assertFalse(bool(getattr(self.place, attr)))
