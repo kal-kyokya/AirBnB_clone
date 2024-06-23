@@ -1,0 +1,14 @@
+/*
+ * Common tags' and attributes' style definitions for '5-index'
+ */
+
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 30px auto;
+}
