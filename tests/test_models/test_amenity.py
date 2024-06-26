@@ -21,3 +21,9 @@ class TestAmenity(unittest.TestCase):
     def test_class_attr(self):
         self.assertIs(type(self.amenity.name), str)
         self.assertFalse(bool(getattr(self.amenity, "name")))
+
+    def __init__(self, *args, **kwargs):
+        """Tests dunder Constructor"""
+        super().__init__(*args, **kwargs)
+        self.name = "Amenity"
+        self.value = Amenity
