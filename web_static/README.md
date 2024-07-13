@@ -17,12 +17,9 @@ This directory holds all files required for completion of the 'AirBnb Clone - We
 	->	All images should be in:
 			images folder
 	->	It is not allowed to use:
-			'!important', and
-			id (#... in the CSS file)
+			'!important', and id (#... in the CSS file)
 	->	It is not allowed to use tags:
-			img,
-			embed, and
-			iframe
+			img, embed, and	iframe
 	->	It is not allowed to use:
 			Javascript
 	->	No cross browsers
