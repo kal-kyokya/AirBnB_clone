@@ -141,6 +141,7 @@ class HBNBCommand(cmd.Cmd):
         Updates an instance based on the class name and
         id by adding or updating attribute
         (save the change into the JSON file).
+
         Structure: update [class name] [id] [arg_name] [arg_value]
         """
         if not arg:
@@ -148,17 +149,14 @@ class HBNBCommand(cmd.Cmd):
             return
         my_data = shlex.split(arg)
         storage.reload()
-        objs_dict = storage.all()
         if my_data[0] not in HBNBCommand.my_dict.keys():
             print("** class doesn't exist **")
             return
         if (len(my_data) == 1):
             print("** instance id missing **")
             return
-        try:
-            key = my_data[0] + "." + my_data[1]
-            objs_dict[key]
-        except KeyError:
+        key = my_data[0] + "." + my_data[1]
+        if key not in storage.all():
             print("** no instance found **")
             return
         if (len(my_data) == 2):
@@ -177,8 +175,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update2(self, arg):
         """
-        Updates an instance based on the class name and
-        id by adding or updating attribute
+        Updates an instance using a dictionary
+        based on the class name and id
+        by adding or updating attribute
         (save the change into the JSON file).
         Structure: update [class name] [id] [dictionary]
         """
